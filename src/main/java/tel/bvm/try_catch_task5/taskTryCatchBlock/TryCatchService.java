@@ -19,52 +19,52 @@ import java.io.InputStreamReader;
  */
 public class TryCatchService {
 
-   public static final Logger logger = LoggerFactory.getLogger(TryCatchService.class);
+    public static final Logger logger = LoggerFactory.getLogger(TryCatchService.class);
 
-   /**
-    * Основной метод программы. Считывает два числа с консоли, выполняет деление первого числа на второе
-    * и выводит результат. В случае возникновения ошибок (например, неверный ввод, деление на ноль),
-    * ошибки обрабатываются и логируются.
-    *
-    * @param args аргументы командной строки (не используются)
-    */
-   public static void main(String[] args) {
+    /**
+     * Основной метод программы. Считывает два числа с консоли, выполняет деление первого числа на второе
+     * и выводит результат. В случае возникновения ошибок (например, неверный ввод, деление на ноль),
+     * ошибки обрабатываются и логируются.
+     *
+     * @param args аргументы командной строки (не используются)
+     */
+    public static void main(String[] args) {
 
-      BufferedReader reader = null;
+        BufferedReader reader = null;
 
-      try {
-         reader = new BufferedReader(new InputStreamReader(System.in));
-         logger.info("Введите первое значение: ");
-         String inputOne = reader.readLine();
-         int numOne = Integer.parseInt(inputOne);
+        try {
+            reader = new BufferedReader(new InputStreamReader(System.in));
+            logger.info("Введите первое значение: ");
+            String inputOne = reader.readLine();
+            int numOne = Integer.parseInt(inputOne);
 
-         logger.info("Введите второе значение: ");
-         String inputTwo = reader.readLine();
-         int numTwo = Integer.parseInt(inputTwo);
+            logger.info("Введите второе значение: ");
+            String inputTwo = reader.readLine();
+            int numTwo = Integer.parseInt(inputTwo);
 
-         int result = numOne / numTwo;
+            int result = numOne / numTwo;
 
-         logger.info("Результат деления: {}", result);
+            logger.info("Результат деления: {}", result);
 
-      } catch (IOException e) {
-         logger.error("Ошибка ввода вывода: {}", e.getMessage());
-      } catch (ArithmeticException e) {
-         logger.error("Делитель не должен быть равен нулю: ", e);
-      } catch (NumberFormatException e) {
-         logger.error("Введено не допустимое значение переменной {}", e.getMessage());
-      } catch (Exception e) {
-          logger.error("Общее исключение, ошибка вида: {}", e.getMessage());
-      } finally {
-         try {
-            if (reader != null) {
-               reader.close();
-               logger.info("Ресурс буфера обмена закрыт");
+        } catch (IOException e) {
+            logger.error("Ошибка ввода вывода: {}", e.getMessage());
+        } catch (ArithmeticException e) {
+            logger.error("Делитель не должен быть равен нулю: ", e);
+        } catch (NumberFormatException e) {
+            logger.error("Введено не допустимое значение переменной {}", e.getMessage());
+        } catch (Exception e) {
+            logger.error("Общее исключение, ошибка вида: {}", e.getMessage());
+        } finally {
+            try {
+                if (reader != null) {
+                    reader.close();
+                    logger.info("Ресурс буфера обмена закрыт");
+                }
+            } catch (IOException e) {
+                logger.error("Ошибка при закрытии ресурса обмена: {}", e.getMessage());
             }
-         } catch (IOException e) {
-            logger.error("Ошибка при закрытии ресурса обмена: {}", e.getMessage());
-         }
-         logger.info("Блок finally успешно выполнен");
-      }
-      logger.info("Расчёт полученных значений выполнен...");
-   }
+            logger.info("Блок finally успешно выполнен");
+        }
+        logger.info("Расчёт полученных значений выполнен...");
+    }
 }
